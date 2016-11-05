@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Zandronum uninstall
+Comment=Uninstall Zandronum and Doomseeker.
+Exec=x-terminal-emulator -e /usr/games/zandronum/uninstall.sh
+Icon=/usr/share/pixmaps/zandronum.png
+Terminal=false
+Categories=Game

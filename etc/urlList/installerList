@@ -1,0 +1,19 @@
+# Lista de urls donde descargar ficheros. Debe cumplir lo siguiente:
+# 1. Debe contener una sola URL por linea
+# 2. Si una linea comienza por # se considera comentario y se ignora
+# 3. Se admiten lineas en blanco y son ignoradas igual que los comentarios
+
+# Doom MOD list
+http://gam.thewaitingroom.org/be_wads/doommetalvol4.wad
+http://gam.thewaitingroom.org/be_wads/zdoom-dhtp-20150723.pk3
+http://gam.thewaitingroom.org/be_wads/hiresdoomfont.wad
+http://gam.thewaitingroom.org/be_wads/brutalv20.pk3
+http://gam.thewaitingroom.org/be_wads/doomcoop2-bd-hc2.wad
+
+# Heretic MOD list
+http://gam.thewaitingroom.org/be_wads/hereticmusic.wad
+http://gam.thewaitingroom.org/be_wads/heretic_high_resolution_pack.pk3
+
+# Hexen MOD list
+http://gam.thewaitingroom.org/be_wads/hexen-remix-sycraft-v5.pk3
+http://gam.thewaitingroom.org/be_wads/hexen_high_resolution_pack.pk3
