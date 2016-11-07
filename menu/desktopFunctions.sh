@@ -7,27 +7,17 @@ function credits
 
 function installNeededPackages
 {
-	local neededPackages=( aria2 libnotify-bin xterm zenity )
-	if [ "$KDE_FULL_SESSION" != "true" ]; then
-		neededPackages+=( gksu )
-	else
-		neededPackages+=( kdesudo )
-		if [ "$distro" == "ubuntu" ]; then neededPackages+=( libqtgui4-perl ); fi
-	fi
+	local neededPackages=( zenity xterm aria2 libnotify-bin )
+	local package
 
-	local packagesToInstall=()
-	for package in "${neededPackages[@]}"; do
-		if [ -z "`dpkg -s $package 2>&1 | grep "Status: install ok installed"`" ]; then
-			packagesToInstall+=( $package )
+	for package in ${neededPackages[@]}; do
+		if [ -z "`dpkg -s $package 2>&1 | grep 'Status: install ok installed'`" ]; then
+			if [ "$package" == "xterm" ] || [ "$package" == "zenity" ]; then
+				echo -e "\n$installNeededPackage: $package\n"; echo "$installNeededPackage: $package" >> "$logFile"
+				sudo apt -y install $package 2>>"$logFile"
+			else
+				execute "$installNeededPackage: $package" "apt -y install $package 2>>\"$logFile\""
+			fi
 		fi
 	done
-
-	if [ ${#packagesToInstall[@]} -gt 0 ]; then
-		echo "$installingRepoApplications: ${packagesToInstall[@]}"
-		if [ "$KDE_FULL_SESSION" != "true" ]; then
-			`gksudo -S "apt -y install ${packagesToInstall[@]}" 2>>"$logFile"`
-		else
-			`kdesudo -c "apt -y install ${packagesToInstall[@]}" 2>>"$logFile"`
-		fi
-	fi
 }

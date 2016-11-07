@@ -23,13 +23,12 @@ function execute
 ##
 function prepareInstallation
 {
+  installNeededPackages
   rm -rf $tempFolder
   local folders="$tempFolder $homeFolder/logs $zandronumInstallFolder $iwadFolder $wadFolder $doomseekerProfilesFolder $zandronumHomeFolder $doomseekerHomeFolder"
-  local commands="mkdir -p $folders 2>>$logFile;"
-  commands+="cp -f ./sh/uninstall.sh $zandronumInstallFolder;"
-  commands+="chown -R $username:$username $folders 2>>$logFile;"
-  commands+="$( installNeededPackages );"
-  execute "$prepareInstallationMessage" "$commands"
+  sudo mkdir -p $folders 2>>$logFile
+  sudo cp -f ./sh/uninstall.sh $zandronumInstallFolder
+  sudo chown -R $username:$username $folders 2>>$logFile
 }
 
 ##
@@ -40,7 +39,7 @@ function prepareInstallation
 function downloadWads
 {
   # Test if parameters are empty
-  if [[ "$1" == "" ]] || [[ "$2" == "" ]]; then
+  if [ -z "$1" ] || [ -z "$2" ]; then
     echo "$downloadWadsErrorMessage" >> $logFile
   else
   	local outputFolder="$2" index=0 line
