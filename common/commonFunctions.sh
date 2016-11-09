@@ -72,20 +72,17 @@ function addZandronumRepo
 ##
 function installSetupZandronumDoomseeker
 {
-  local commands="apt -y install zandronum doomseeker-zandronum 2>>$logFile;"
-  commands+="cp -f $etcFolder/uninstall-zandronum.desktop /usr/share/applications;"
+  execute "$installSetupZandronumMessage" "apt -y install zandronum doomseeker-zandronum 2>>$logFile; apt -y install zandronum-client --reinstall 2>>$logFile"
+
+  sudo cp -f $etcFolder/uninstall-zandronum.desktop /usr/share/applications
   if [ ! -f $zandronumHomeFolder/zandronum.ini ]; then
-  	commands+="zandronum 2>/dev/null;"
-  	commands+="mv $zandronumHomeFolder/zandronum.ini $zandronumHomeFolder/zandronum-original.ini 2>>$logFile;"
-  	commands+="cp -f $etcFolder/zandronum.ini $zandronumHomeFolder;"
+  	/usr/games/zandronum/zandronum 2>/dev/null
+  	mv $zandronumHomeFolder/zandronum.ini $zandronumHomeFolder/zandronum-original.ini 2>>$logFile
+  	cp -f $etcFolder/zandronum.ini $zandronumHomeFolder
   fi
   if [ ! -f $doomseekerHomeFolder/doomseeker.ini ]; then
-  	commands+="cp -f $etcFolder/doomseeker.ini $doomseekerHomeFolder;"
+  	cp -f $etcFolder/doomseeker.ini $doomseekerHomeFolder
   fi
-  if [ ! -f $doomseekerHomeFolder/doomseeker.ini ]; then
-  	commands+="cp -f $etcFolder/doomseeker.ini $doomseekerHomeFolder;"
-  fi
-  commands+="cp -f $etcFolder/profiles/* $doomseekerProfilesFolder;"
-  commands+="ln -sf $zandronumInstallFolder \"$desktopFolder/Zandronum\" 2>>$logFile;"
-  execute "$installSetupZandronumMessage" "$commands"
+  cp -f $etcFolder/profiles/* $doomseekerProfilesFolder
+  ln -sf $zandronumInstallFolder \"$desktopFolder/Zandronum_Doomseeker\" 2>>$logFile
 }

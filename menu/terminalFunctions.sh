@@ -14,7 +14,7 @@ function credits
 
 function installNeededPackages
 {
-	local neededPackages=( aria2 dialog tmux )
+	local neededPackages=( dialog tmux aria2 libglu1-mesa )
 	local packagesToInstall=()
 	for package in "${neededPackages[@]}"; do
 		if [ -z "`dpkg -s $package 2>&1 | grep "Status: install ok installed"`" ]; then

@@ -7,7 +7,7 @@ function credits
 
 function installNeededPackages
 {
-	local neededPackages=( zenity xterm aria2 libnotify-bin )
+	local neededPackages=( zenity xterm aria2 libglu1-mesa libnotify-bin )
 	local package
 
 	for package in ${neededPackages[@]}; do
