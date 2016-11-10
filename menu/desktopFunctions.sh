@@ -16,8 +16,24 @@ function installNeededPackages
 				echo -e "\n$installNeededPackage: $package\n"; echo "$installNeededPackage: $package" >> "$logFile"
 				sudo apt -y install $package 2>>"$logFile"
 			else
-				execute "$installNeededPackage: $package" "apt -y install $package 2>>\"$logFile\""
+				executeXterm "$installNeededPackage: $package" "apt -y install $package 2>>\"$logFile\""
 			fi
 		fi
 	done
+}
+
+function executeSudo {
+		local commands="$1"
+
+	  SUDO_ASKPASS="$commonFolder/askpass.sh" sudo -A bash -c "$commands"
+}
+
+function executeSudoTerminal
+{
+	local message="$1" commands="$2"
+
+  echo "$message" >> $logFile
+  xtermCommand="xterm -T \"$terminalProgress\" -fa 'DejaVu Sans Mono' -fs 11 -geometry 120x15+0-0 -xrm 'XTerm.vt100.allowTitleOps: false' -e \"$commands\";"
+  ( SUDO_ASKPASS="$commonFolder/askpass.sh" sudo -A bash -c "echo \"# $message\"; $xtermCommand" ) \
+  | zenity --progress --title="$installerTitle" --no-cancel --pulsate --auto-close --width=500 --window-icon="$installerIconFolder/zandronum-logo32.png"
 }
