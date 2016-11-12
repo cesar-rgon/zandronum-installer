@@ -1,11 +1,11 @@
 ##
-#
+# This funtion prepares the installation proccess
 ##
 function prepareInstallation
 {
   installNeededPackages
   local folders="$tempFolder $homeFolder/logs $zandronumInstallFolder $iwadFolder $wadFolder $doomseekerProfilesFolder $zandronumHomeFolder $doomseekerHomeFolder"
-  local commands="rm -rf $tempFolder;"
+  local commands="rm -rf $tempFolder;rm -f $logFile;"
   commands+="mkdir -p $folders 2>>$logFile;"
   commands+="cp -f ./sh/uninstall.sh $zandronumInstallFolder;"
   commands+="chown -R $username:$username $folders 2>>$logFile;"
@@ -13,7 +13,7 @@ function prepareInstallation
 }
 
 ##
-# Download in parallel a list of files from URL list
+# This functions downloads in parallel a list of files from URL list
 # @param urlList        File that contains a list of URL
 # @param outputFolder   Output folder to download the files
 ##
@@ -37,7 +37,7 @@ function downloadWads
 }
 
 ##
-#
+# This functions adds Zandronum's third-party repository
 ##
 function addZandronumRepo
 {
@@ -51,11 +51,13 @@ function addZandronumRepo
 }
 
 ##
-#
+# This function installs Zandronum, Doomseeker and setups Zandronum
 ##
 function installSetupZandronumDoomseeker
 {
-  executeSudoTerminal "$installSetupZandronumMessage" "apt -y install zandronum-server zandronum-pk3 zandronum-client doomseeker-zandronum 2>>$logFile"
+  local commands="apt -y install zandronum doomseeker-zandronum 2>>$logFile;"
+  commands+="apt -y install zandronum-server zandronum-pk3 zandronum-client --reinstall 2>>$logFile;"
+  executeSudoTerminal "$installSetupZandronumMessage" "$commands"
   executeSudo "cp -f $etcFolder/uninstall-zandronum.desktop /usr/share/applications"
 
   if [ ! -f $zandronumHomeFolder/zandronum.ini ]; then

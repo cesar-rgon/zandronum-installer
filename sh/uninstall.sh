@@ -60,7 +60,7 @@ sudo rm -f /etc/apt/sources.list.d/zandronum.list
 # FINISH TO UNINSTALL
 ########################################################################################################################
 sudo rm -f /usr/share/applications/uninstall-zandronum.desktop
-sudo rm -f "$desktopFolder/Datos de Zandronum"
+sudo rm -f "$desktopFolder/Zandronum_Doomseeker"
 if [ "$answer" == "s" ] || [ "$answer" == "S" ]; then
 	sudo rm -rf /usr/games/zandronum
 	sudo rm -rf /home/$username/.zandronum

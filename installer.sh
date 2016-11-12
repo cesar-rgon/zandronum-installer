@@ -12,17 +12,17 @@ commands=""
 # IMPORT FUNCTIONS
 ########################################################################################################################
 if [ -z "$DISPLAY" ]; then
-	. menu/terminalFunctions.sh
+	. common/terminalFunctions.sh
 else
-	. menu/desktopFunctions.sh
+	. common/desktopFunctions.sh
 fi
 . common/commonFunctions.sh
 
 ########################################################################################################################
 # INSTALLATION STEPS
 ########################################################################################################################
-credits
 prepareInstallation
+credits
 downloadWads "$urlFolder/installerList" "$wadFolder"
 addZandronumRepo
 installSetupZandronumDoomseeker

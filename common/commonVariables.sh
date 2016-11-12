@@ -24,10 +24,12 @@ tempFolder="/tmp/zandronum-installer.tmp"
 # VARIABLES
 ########################################################################################################################
 logFile="$homeFolder/logs/zandronum-installer-log.txt"
-language="${LANG:0:2}"
-languageFile="$languageFolder/$language.properties"
+#	Width in pixels of dialog box
+if [ -z "$DISPLAY" ]; then width=`tput cols`; else width=900; fi
 
 ########################################################################################################################
 # LANGUAGE VARIABLES
 ########################################################################################################################
+language="${LANG:0:2}"
+languageFile="$languageFolder/$language.properties"
 if [ -f "$languageFile" ]; then	. "$languageFile"; else . $languageFolder/en.properties; fi
