@@ -4,10 +4,10 @@
 function prepareInstallation
 {
   installNeededPackages
-  local folders="$tempFolder $homeFolder/logs $zandronumInstallFolder $iwadFolder $wadFolder $doomseekerProfilesFolder $zandronumHomeFolder $doomseekerHomeFolder"
+  local folders="$tempFolder $homeFolder/logs $zandronumInstallFolder $zandronumInstallFolder/uninstaller $iwadFolder $wadFolder $doomseekerProfilesFolder $zandronumHomeFolder $doomseekerHomeFolder"
   local commands="rm -rf $tempFolder;rm -f $logFile;"
   commands+="mkdir -p $folders 2>>$logFile;"
-  commands+="cp -f ./sh/uninstall.sh $zandronumInstallFolder;"
+  commands+="cp -Rf $scriptRootFolder/* $zandronumInstallFolder/uninstaller;"
   commands+="chown -R $username:$username $folders 2>>$logFile;"
   executeSudo "$commands"
 }

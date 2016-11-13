@@ -5,14 +5,10 @@
 ##
 function credits
 {
-	local whiteSpaces="                  "
+	local whiteSpaces="                 " title
 	printf "\n%.21s%s\n" "$scritNameLabel:$whiteSpaces" "$installerTitle" > $tempFolder/zandronum-installer.credits
-	printf "%.21s%s\n" "$releaseDateLabel:$whiteSpaces" "$releaseDate" >> $tempFolder/zandronum-installer.credits
-	printf "%.21s%s\n" "$lastModifiedDateLabel:$whiteSpaces" "$lastModifiedDate" >> $tempFolder/zandronum-installer.credits
-	#printf "%.21s%s\n" "$githubProjectLabel:$whiteSpaces" "$githubProjectUrl" >> $tempFolder/zandronum-installer.credits
 	printf "%.21s%s\n" "$authorLabel:$whiteSpaces" "$author" >> $tempFolder/zandronum-installer.credits
 	printf "%.21s%s\n" "$infoLabel:$whiteSpaces" "$info" >> $tempFolder/zandronum-installer.credits
-
 	dialog --title "$creditsLabel" --backtitle "$installerTitle" --stdout --textbox $tempFolder/zandronum-installer.credits 11 100
 }
 

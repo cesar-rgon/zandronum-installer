@@ -12,11 +12,11 @@ commands=""
 # IMPORT FUNCTIONS
 ########################################################################################################################
 if [ -z "$DISPLAY" ]; then
-	. common/terminalFunctions.sh
+	. $scriptRootFolder/common/terminalFunctions.sh
 else
-	. common/desktopFunctions.sh
+	. $scriptRootFolder/common/desktopFunctions.sh
 fi
-. common/commonFunctions.sh
+. $scriptRootFolder/common/commonFunctions.sh
 
 ########################################################################################################################
 # INSTALLATION STEPS

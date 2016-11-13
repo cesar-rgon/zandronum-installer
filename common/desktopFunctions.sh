@@ -5,7 +5,7 @@
 ##
 function credits
 {
-	notify-send -i "$installerIconFolder/zandronum-logo96.png" "$installerTitle" "$releaseDateLabel: $releaseDate\n$lastModifiedDateLabel: $lastModifiedDate\n$authorLabel: $author"
+	notify-send -i "$installerIconFolder/zandronum-logo96.png" "$installerTitle" "$authorLabel: $author\n$infoLabel: $info"
 }
 
 ##
